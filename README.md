@@ -1,37 +1,40 @@
-# Desafio @ Justa Front-end
+# Play.s
 
-Este teste é apresentado aos candidatos as vagas de desenvolvimento Front-end para avaliar os quesitos técnicos.
+Projeto criado para descobrir quais os estilos musicais de playlist do Spotify.
 
-## Descrição
+## Informações Gerais
 
-Criar uma Single Page Application (SPA) de um dashboard com gráficos (ChartJS, ApexCharts, D3, etc.), tabela para a exibição de dados (realizar requisições HTTP para exibir os dados na tabela, pode usar o [Public Apis](https://github.com/public-apis/public-apis)).
+- [Wiki](https://github.com/dxxglas/jst-job-challenges/wiki)
+- [Kanban](https://github.com/dxxglas/jst-job-challenges/projects/1)
 
-Você deve fazer um fork do projeto e deixar publico para que possamos analisar commits e o processo de desenvolvimento.
+## Boas Práticas
 
-Links com conteúdo para alguns dos temas citados serão fornecidos no fim da descrição do desafio.
+- As branchs desse repositório devem seguir esse modelo:
+    - `main`: produção
+    - `develop`: desenvolvimento
+    - `feature-issue`: issues em desenvolvimento
+    - `bugfix-issue`: issues de ajuste e solução de erros
 
-### Requisitos mandatórios
+- Os commits devem ser realizados em português e seguir o modelo:
+    - **feature-issue** + : + descrição, ou seja: `feature-issue: descrição`
 
-- Uso Algum framework/biblioteca, como React, Vue, Angular 2+ ou JavaScript Vanilla.
-- Biblioteca para requisições HTTP (ex.: Axios), ou Fetch API.
-- Algum pré-processador CSS, como SASS, LESS, ou algum outro.
-- Ser responsivo.
-- Usar algum linter para o JavaScript/TypeScript (ESLint, TSLint) e Prettier.
-- Deploy da aplicação desenvolvida.
+## Para executar esse projeto
 
-### Avaliação
+1. Clone este repositório.
+2. Execute o comando `$ npm install` seguido por `$ npm start`
+3. O projeto será exibido em `http://localhost:3000`
 
-Entre os critérios de avaliação estão:
+## Para criar Pull Requests
 
-- Usabilidade da aplicação.
-- Código limpo e organização.
-- Documentação de código.
-- Documentação do projeto (readme).
-- Performance.
-- Testes (Jest, Testing Library, Karma, Jasmine ou E2E com Cypress)
-
-### Links Úteis
-
-- [GitFlow](https://medium.com/trainingcenter/utilizando-o-fluxo-git-flow-e63d5e0d5e04)
-- [Design de aplicações](https://material.io/design/)
-- [Clean Code](https://simpleprogrammer.com/clean-code-principles-better-programmer/)
+1. Na **branch-filha**, a que se deseja unir com a branch principal, execute `$ git push` para atualizá-la no repositório remoto.
+2. Execute `$ git checkout branch-principal` e em seguida `$ git pull` para atualizar a **branch principal** no repositório local.
+3. Execute `$ git checkout branch-filha` e em seguida `$ git pull` para confirmar que a **branch filha** está atualizada no repositório local.
+4. Na **branch filha**, execute `$ git rebase branch-principal` para iniciar o **rebase**.
+5. Se existirem conflitos:
+    1. Abra o *VS Code* para checar os conflitos e realizar os ajustes
+    2. Execute `$ git add .` para *adicionar* as mudanças
+    3. Confirme os arquivos modificados com `$ git status`
+    4. Execute `$ git rebase --continue` para continuar o rebase
+    5. Caso existam novos conflitos, repita os passos anteriores
+6. Execute `$ git push` para atualizar o repositório remoto com as mudanças do rebase
+7. Abra o `Pull Request` da **branch filha** para a **branch principal**
