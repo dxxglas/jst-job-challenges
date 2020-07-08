@@ -21,8 +21,11 @@ Projeto criado para descobrir quais os estilos musicais de playlist do Spotify.
 ## Para executar esse projeto
 
 1. Clone este repositório.
-2. Execute o comando `$ npm install` seguido por `$ npm start`
-3. O projeto será exibido em `http://localhost:3000`
+2. Adicione o arquivo `.env` a raiz do repositório com as variáveis:
+  - `REACT_APP_CLIENT_ID` e `REACT_APP_CLIENT_SECRET`
+  - Os valores são obtidos no [Spotify for Developers](https://developer.spotify.com/)
+3. Execute o comando `$ npm install` seguido por `$ npm start`
+4. O projeto será exibido em `http://localhost:3000`
 
 ## Para criar Pull Requests
 
