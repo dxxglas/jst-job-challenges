@@ -28,3 +28,11 @@
     }
   }
 }
+
+@media screen and (max-device-width: $small) {
+  .ExploreBox {
+    .ExploreContainer {
+      width: $width-mobile;
+    }
+  }
+}
