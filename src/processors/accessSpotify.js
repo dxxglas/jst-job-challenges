@@ -8,6 +8,7 @@ export var accessSpotify = async (URI) => {
   var dataArtists = [];
   var idArtists = [];
   var genres = [];
+  var playlistName;
 
   const headers = {
     headers: {
@@ -100,5 +101,27 @@ export var accessSpotify = async (URI) => {
     });
   }
 
-  return group(genres);
+  try {
+    await axios
+      .post(
+        "https://accounts.spotify.com/api/token",
+        qs.stringify(data),
+        headers
+      )
+      .then(async function (resPostThird) {
+        const resGetPlay = await axios({
+          method: "GET",
+          url: `https://api.spotify.com/v1/playlists/${URI}`,
+          headers: {
+            Authorization: "Bearer " + resPostThird.data.access_token,
+          },
+          json: true,
+        });
+        playlistName = resGetPlay.data.name;
+      });
+  } catch (error) {
+    console.log(error);
+  }
+
+  return [group(genres), playlistName];
 };

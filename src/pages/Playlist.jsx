@@ -9,15 +9,20 @@ class Playlist extends Component {
     super(props);
     this.state = {
       data: this.props.location.data,
+      playname: this.props.location.playname,
+      amount: Object.keys(this.props.location.data).length,
     };
   }
 
   render() {
     return (
       <div className="Playlist">
-        <Header title="Nome da Playlist" subtitle="40 músicas" />
+        <Header
+          title={this.state.playname}
+          subtitle={`${this.state.amount} estilos`}
+        />
         <GraphicBox data={this.state.data} />
-        <TableBox />
+        <TableBox data={this.state.data} />
       </div>
     );
   }
