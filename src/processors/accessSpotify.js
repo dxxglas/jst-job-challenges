@@ -1,80 +1,89 @@
-import request from "request";
+import axios from "axios";
+import qs from "qs";
 
-export const accessSpotify = async (URI) => {
-  var aux = [];
+export var accessSpotify = async (URI) => {
+  const clientId = process.env.REACT_APP_CLIENT_ID;
+  const clientSecret = process.env.REACT_APP_CLIENT_SECRET;
+  var dataTrack;
+  var dataArtists = [];
+  var idArtists = [];
+  var genres = [];
 
-  // authorization
-  var authOptions = {
-    url: "https://accounts.spotify.com/api/token",
+  const headers = {
     headers: {
-      Authorization:
-        "Basic " +
-        new Buffer(
-          process.env.REACT_APP_CLIENT_ID +
-            ":" +
-            process.env.REACT_APP_CLIENT_SECRET
-        ).toString("base64"),
+      Accept: "application/json",
+      "Content-Type": "application/x-www-form-urlencoded",
     },
-    form: {
-      grant_type: "client_credentials",
+    auth: {
+      username: clientId,
+      password: clientSecret,
     },
-    json: true,
+  };
+  const data = {
+    grant_type: "client_credentials",
   };
 
-  await post1(URI, authOptions, aux);
-  await post2(authOptions, aux);
-};
-
-async function post1(URI, authOptions, aux) {
   try {
-    await request.post(authOptions, function (error, response, body) {
-      if (!error && response.statusCode === 200) {
-        // use the access token to access the Spotify Web API
-        var token = body.access_token;
-        var getPlaylist = {
+    const resPost = await axios
+      .post(
+        "https://accounts.spotify.com/api/token",
+        qs.stringify(data),
+        headers
+      )
+      .then(async function (resPost) {
+        const resGetTrack = await axios({
+          method: "GET",
           url: `https://api.spotify.com/v1/playlists/${URI}/tracks`,
           headers: {
-            Authorization: "Bearer " + token,
+            Authorization: "Bearer " + resPost.data.access_token,
           },
           json: true,
-        };
-        // get elements
-        request.get(getPlaylist, function (error, response, body) {
-          body.items.forEach((element, index, array) => {
-            aux.push(element.track.album.id);
-          });
         });
-      }
-    });
-  } catch (err) {
-    console.log("Erro:", err);
+        dataTrack = resGetTrack;
+      });
+  } catch (error) {
+    console.log(error);
   }
-}
 
-async function post2(authOptions, aux) {
-  try {
-    await request.post(authOptions, function (error, response, body) {
-      if (!error && response.statusCode === 200) {
-        // use the access token to access the Spotify Web API
-        var token = body.access_token;
-        // get elements
-        console.log(aux);
-        var auxAlbuns = aux.join("%");
-        var getGenreAlbum = {
-          url: `https://api.spotify.com/v1/albums?ids=${auxAlbuns}`,
-          headers: {
-            Accept: "application/json",
-            Authorization: "Bearer " + token,
-          },
-          json: true,
-        };
+  dataTrack.data.items.forEach((element, index, array) => {
+    dataArtists.push(element.track.artists);
+  });
 
-        request.get(getGenreAlbum, function (error, response, body) {
-          console.log(response);
+  for (var i = 0; i < dataArtists.length; i++) {
+    for (var b = 0; b < dataArtists[i].length; b++) {
+      idArtists.push(dataArtists[i][b].id);
+    }
+  }
+
+  for (var a = 0; a < idArtists.length; a++) {
+    var idArtist = idArtists[a];
+    try {
+      const resPostSec = await axios
+        .post(
+          "https://accounts.spotify.com/api/token",
+          qs.stringify(data),
+          headers
+        )
+        .then(async function (resPostSec) {
+          if (idArtist !== undefined) {
+            const resGetArtist = await axios({
+              method: "GET",
+              url: `https://api.spotify.com/v1/artists/${idArtist}`,
+              headers: {
+                Authorization: "Bearer " + resPostSec.data.access_token,
+              },
+              json: true,
+            });
+            var genreArtist = resGetArtist.data.genres;
+            if (genreArtist.length > 0) {
+              genreArtist.forEach((element) => {
+                genres.push(element);
+              });
+            }
+          }
         });
-      }
-    });
-  } catch (err) {
-    console.log("Erro:", err);
+    } catch (err) {
+      console.log(err);
+    }
   }
-}
+};

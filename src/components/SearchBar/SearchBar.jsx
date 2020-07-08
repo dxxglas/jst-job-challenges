@@ -29,7 +29,7 @@ class SearchBar extends Component {
 
   render() {
     return (
-      <form className="SearchBar" onSubmit={this.handleSubmit}>
+      <form className="SearchBar" onSubmit={this.handleSubmit} method="GET">
         <div className="sBox">
           <input
             type="search"
