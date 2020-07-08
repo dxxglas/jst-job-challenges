@@ -52,3 +52,23 @@
     }
   }
 }
+
+@media screen and (max-device-width: $small) {
+  .TableCard {
+    width: 85vw;
+    justify-content: flex-end;
+
+    .cardIcon {
+      width: 30px;
+      height: 30px;
+
+      .imgIcon {
+        left: -10px;
+      }
+    }
+
+    .genreInfos {
+      width: 80%;
+    }
+  }
+}

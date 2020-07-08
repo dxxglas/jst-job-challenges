@@ -9,7 +9,7 @@
   align-items: center;
 
   .ExploreContainer {
-    width: 65vw;
+    width: $width-desktop;
     h3 {
       font-weight: 500;
     }
@@ -25,6 +25,14 @@
       div:first-child {
         width: 320px;
       }
+    }
+  }
+}
+
+@media screen and (max-device-width: $small) {
+  .ExploreBox {
+    .ExploreContainer {
+      width: $width-mobile;
     }
   }
 }
