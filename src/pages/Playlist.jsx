@@ -10,8 +10,8 @@ class Playlist extends Component {
     this.state = {};
   }
 
-  componentWillMount() {
-    console.log(this.props.location);
+  componentDidMount() {
+    console.log(this.props.location.data);
   }
 
   render() {

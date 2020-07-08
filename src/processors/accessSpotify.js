@@ -24,7 +24,7 @@ export var accessSpotify = async (URI) => {
   };
 
   try {
-    const resPost = await axios
+    await axios
       .post(
         "https://accounts.spotify.com/api/token",
         qs.stringify(data),
@@ -58,7 +58,7 @@ export var accessSpotify = async (URI) => {
   for (var a = 0; a < idArtists.length; a++) {
     var idArtist = idArtists[a];
     try {
-      const resPostSec = await axios
+      await axios
         .post(
           "https://accounts.spotify.com/api/token",
           qs.stringify(data),
