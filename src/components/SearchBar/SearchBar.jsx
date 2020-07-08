@@ -28,7 +28,7 @@ class SearchBar extends Component {
     strValue = strValue.split("/playlist/").pop().split("?")[0];
     var genres = await accessSpotify(strValue);
     this.setState({ genres: genres });
-    this.props.history.push({
+    await this.props.history.push({
       pathname: "/playlist",
       data: genres, // array
     });

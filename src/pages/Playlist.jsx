@@ -7,18 +7,16 @@ import TableBox from "../components/TableBox/TableBox";
 class Playlist extends Component {
   constructor(props) {
     super(props);
-    this.state = {};
-  }
-
-  componentDidMount() {
-    console.log(this.props.location.data);
+    this.state = {
+      data: this.props.location.data,
+    };
   }
 
   render() {
     return (
       <div className="Playlist">
         <Header title="Nome da Playlist" subtitle="40 músicas" />
-        <GraphicBox />
+        <GraphicBox data={this.state.data} />
         <TableBox />
       </div>
     );
