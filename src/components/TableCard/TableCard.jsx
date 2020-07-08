@@ -5,6 +5,14 @@ import outline from "../../assets/outline.svg";
 import "./TableCard.scss";
 
 class TableCard extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      genre: this.props.genre,
+      count: this.props.count,
+    };
+  }
+
   render() {
     return (
       <div className="TableCard">
@@ -13,8 +21,8 @@ class TableCard extends Component {
           <img src={outline} alt="outline" className="imgOutline" />
         </div>
         <div className="genreInfos">
-          <span className="genreStyle">Rock</span>
-          <span className="genreAmount">14</span>
+          <span className="genreStyle">{this.state.genre}</span>
+          <span className="genreAmount">{this.state.count}</span>
         </div>
       </div>
     );
