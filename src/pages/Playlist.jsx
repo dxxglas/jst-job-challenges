@@ -5,6 +5,15 @@ import GraphicBox from "../components/GraphicBox/GraphicBox";
 import TableBox from "../components/TableBox/TableBox";
 
 class Playlist extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {};
+  }
+
+  componentWillMount() {
+    console.log(this.props.location);
+  }
+
   render() {
     return (
       <div className="Playlist">
