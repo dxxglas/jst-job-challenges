@@ -14,6 +14,7 @@ class TableBox extends Component {
   }
 
   render() {
+    console.log(this.state.data);
     return (
       <div className="TableBox">
         {this.state.data.map((element) => {
