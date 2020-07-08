@@ -46,3 +46,14 @@
     }
   }
 }
+
+@media screen and (max-device-width: $small) {
+  .GithubBox {
+    .GithubContainer {
+      width: $width-mobile;
+      .gitLink {
+        margin: 20px 0px 80px 10px;
+      }
+    }
+  }
+}
