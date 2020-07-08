@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { withRouter } from "react-router-dom";
 
 import { accessSpotify } from "../../processors/accessSpotify";
 import search from "../../assets/search.svg";
@@ -9,6 +10,7 @@ class SearchBar extends Component {
     super();
     this.state = {
       value: "",
+      genres: "",
     };
 
     this.handleChange = this.handleChange.bind(this);
@@ -25,22 +27,23 @@ class SearchBar extends Component {
     var strValue = this.state.value;
     strValue = strValue.split("/playlist/").pop().split("?")[0];
     var genres = await accessSpotify(strValue);
-    console.log(genres);
+    this.setState({ genres: genres });
+    this.props.history.push({
+      pathname: "/playlist",
+      data: genres, // array
+    });
   }
 
   render() {
     return (
-      <form
-        className="SearchBar"
-        onSubmit={this.handleSubmit}
-        action="/playlist"
-      >
+      <form className="SearchBar" onSubmit={this.handleSubmit}>
         <div className="sBox">
           <input
             type="search"
             placeholder="Cole o link da playlist aqui..."
             value={this.state.value}
             onChange={this.handleChange}
+            required
           />
           <button type="submit">
             <img src={search} alt="search-icon" />
@@ -51,4 +54,4 @@ class SearchBar extends Component {
   }
 }
 
-export default SearchBar;
+export default withRouter(SearchBar);
