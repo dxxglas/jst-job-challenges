@@ -17,7 +17,7 @@ class Playlist extends Component {
       <div className="Playlist">
         <Header title="Nome da Playlist" subtitle="40 músicas" />
         <GraphicBox data={this.state.data} />
-        <TableBox />
+        <TableBox data={this.state.data} />
       </div>
     );
   }
