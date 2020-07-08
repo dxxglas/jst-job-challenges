@@ -4,6 +4,7 @@ $font-stack: "Roboto", sans-serif;
 // Default Colors
 $bg-color: #f2f2f2;
 $bg-color-dark: #ebeced;
+$bg-color-dark-e: #d5d5d6;
 $font-color: #37352f;
 $font-color-light: #575757;
 $red: #ff464f;
@@ -17,6 +18,9 @@ $extra-large: 1200px;
 $large: 992px;
 $medium: 768px;
 $small: 576px;
+
+$width-desktop: 65vw;
+$width-mobile: 75vw;
 
 body {
   margin: 0;

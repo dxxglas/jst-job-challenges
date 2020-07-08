@@ -19,7 +19,7 @@
   align-items: center;
 
   .hBack {
-    width: 65vw;
+    width: $width-desktop;
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -46,7 +46,7 @@
   }
 
   .hTitle {
-    width: 65vw;
+    width: $width-desktop;
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -65,7 +65,7 @@
   }
 
   .hSubtitle {
-    width: 65vw;
+    width: $width-desktop;
     display: flex;
     flex-direction: row;
     align-items: flex-start;
