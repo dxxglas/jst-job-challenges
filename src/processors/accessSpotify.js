@@ -86,4 +86,19 @@ export var accessSpotify = async (URI) => {
       console.log(err);
     }
   }
+
+  function group(arr) {
+    var p = {};
+    arr.forEach(function (x) {
+      p[x] = (p[x] || 0) + 1;
+    });
+    return Object.keys(p).map(function (x) {
+      return {
+        genre: x,
+        count: p[x],
+      };
+    });
+  }
+
+  return group(genres);
 };

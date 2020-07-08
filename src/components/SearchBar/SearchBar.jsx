@@ -19,17 +19,22 @@ class SearchBar extends Component {
     this.setState({ value: event.target.value });
   }
 
-  handleSubmit(event) {
+  async handleSubmit(event) {
     event.preventDefault();
 
     var strValue = this.state.value;
     strValue = strValue.split("/playlist/").pop().split("?")[0];
-    accessSpotify(strValue);
+    var genres = await accessSpotify(strValue);
+    console.log(genres);
   }
 
   render() {
     return (
-      <form className="SearchBar" onSubmit={this.handleSubmit} method="GET">
+      <form
+        className="SearchBar"
+        onSubmit={this.handleSubmit}
+        action="/playlist"
+      >
         <div className="sBox">
           <input
             type="search"
