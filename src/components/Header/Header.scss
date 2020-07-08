@@ -77,3 +77,21 @@
     }
   }
 }
+
+@media screen and (max-device-width: $small) {
+  .Header {
+    .hBack {
+      width: $width-mobile;
+      margin-top: 2em;
+    }
+    .hTitle {
+      width: $width-mobile;
+      img {
+        margin-top: -1em;
+      }
+    }
+    .hSubtitle {
+      width: $width-mobile;
+    }
+  }
+}

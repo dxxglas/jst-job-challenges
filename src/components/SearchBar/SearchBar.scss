@@ -63,9 +63,10 @@
 @media screen and (max-device-width: $small) {
   .SearchBar {
     .sBox {
-      width: 85vw;
+      width: $width-mobile;
       input {
         padding: 20px 15px 20px 15px;
+        font-size: 0.9em;
       }
       button {
         padding: 20px 20px 15px 0px;
